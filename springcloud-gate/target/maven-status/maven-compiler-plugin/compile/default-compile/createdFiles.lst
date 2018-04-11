@@ -1,0 +1,5 @@
+com\zj\springcloud\ZuulApp.class
+com\zj\springcloud\zuul\service\ClientAuthService.class
+com\zj\springcloud\zuul\service\ClientAuthErrorService.class
+com\zj\springcloud\zuul\filter\AccessFilter.class
+com\zj\springcloud\zuul\filter\PostFilter.class
