@@ -1,0 +1,45 @@
+spring:
+  application:
+    name: eureka-server
+  profiles:
+    active: backup1  
+
+eureka:
+  datacenter: cloud
+  environment: study
+  instance:
+    prefer-ip-address: true
+    #多网卡指定IP，docker部署推荐
+    #ip-address: 127.0.0.1
+    instance-id: ${spring.application.name}:${spring.cloud.client.ipAddress}:${spring.application.instance_id:${server.port}}
+  server:
+    wait-time-in-ms-when-sync-empty: 0
+    eviction-interval-timer-in-ms: 60000 # 清理间隔（单位毫秒，默认是60*1000）
+    enable-self-preservation: true       # false 关闭自我保护，不管如何都要剔除心跳检测异常的服务
+  client:
+    registerWithEureka: true             #是否注册eurekaServer
+    fetchRegistry: true                  #是否拉取信息
+      
+---
+spring:
+  profiles: backup1
+server:
+  port: 8761
+eureka:
+  instance:
+    hostname: 127.0.0.1
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:8760/eureka,http://127.0.0.1:8762/eureka
+
+---
+spring:
+  profiles: backup2
+server:
+  port: 8762
+eureka:
+  instance:
+    hostname: 127.0.0.1
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:8760/eureka,http://127.0.0.1:8761/eureka
