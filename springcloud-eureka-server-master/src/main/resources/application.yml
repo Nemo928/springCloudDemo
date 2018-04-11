@@ -1,0 +1,43 @@
+server:
+  port: 8760
+  
+spring:
+  application:
+    name: eureka-server
+  mail:
+    default-encoding: UTF-8
+    protocol: smtp
+    host: smtp.126.com
+    username: 13912974963@126.com
+    password: zhaojin518
+    port: 25
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+  
+eureka:
+  datacenter: cloud
+  environment: study
+  instance:
+    hostname: 127.0.0.1
+    prefer-ip-address: true
+    #多网卡指定IP，docker部署推荐
+    #ip-address: 127.0.0.1
+    instance-id: ${spring.application.name}:${spring.cloud.client.ipAddress}:${spring.application.instance_id:${server.port}}
+  server:
+    wait-time-in-ms-when-sync-empty: 0
+    eviction-interval-timer-in-ms: 60000  # 清理间隔（单位毫秒，默认是60*1000）
+    enable-self-preservation: true        # false 关闭自我保护，不管如何都要剔除心跳检测异常的服务
+  client:
+    registerWithEureka: true             #是否注册eurekaServer
+    fetchRegistry: true                  #是否拉取信息
+    serviceUrl:
+      defaultZone: http://127.0.0.1:8761/eureka,http://127.0.0.1:8762/eureka
+      
+info:
+  userName: allnas
+  eurekaServiceCancalToEmail: 1228280228@qq.com

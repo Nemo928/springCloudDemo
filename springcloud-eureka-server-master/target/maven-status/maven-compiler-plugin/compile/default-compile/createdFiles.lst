@@ -1,0 +1,3 @@
+com\zj\springcloud\email\EmailService.class
+com\zj\springcloud\EurekaMasterServerApp.class
+com\zj\springcloud\listener\EurekaInstanceCancelListener.class
