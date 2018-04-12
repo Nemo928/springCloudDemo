@@ -1,0 +1,31 @@
+server:
+  port: 8808
+  
+management:
+  security:
+    enabled: false
+    
+spring:
+  profiles:
+    active: git-server
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://gitee.com/allnas/SpringcloudConfig
+          searchPaths: respo
+          username: kingskingsjin@126.com
+          password: zhaojin518
+      label: master
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: allnas
+    password: 123456
+    
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:8760/eureka,http://127.0.0.1:8761/eureka,http://127.0.0.1:8762/eureka
