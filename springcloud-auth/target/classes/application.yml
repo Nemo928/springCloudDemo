@@ -1,0 +1,59 @@
+server:
+  context-path: /
+  port: 8778
+  
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:8760/eureka,http://127.0.0.1:8761/eureka,http://127.0.0.1:8762/eureka
+  
+management:
+  security:
+    enabled: false
+  
+endpoints:
+  restart:
+    enabled: true
+        
+spring:
+  application:
+    name: springcloud-auth
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/sc?useSSL=false&autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull
+    username: root
+    password: 123456
+    druidLoginName: allnas
+    druidPassword: 123456
+      
+mybatis-plus:
+  mapper-locations: classpath*:mappings/*.xml
+  typeAliasesPackage: com.zj.springcloud.entity
+  global-config:
+    id-type: 0  #0:数据库ID自增   1:用户输入id  2:全局唯一id(IdWorker)  3:全局唯一ID(uuid)
+    db-column-underline: false
+    refresh-mapper: true
+  configuration:
+    call-setters-on-nulls: true #当查询数据为空时字段返回为null，不加这个查询数据为空时，字段将被隐藏
+    map-underscore-to-camel-case: true #使用驼峰命名法转换字段
+    cache-enabled: true #配置的缓存的全局开关
+    lazyLoadingEnabled: true #延时加载的开关
+    multipleResultSetsEnabled: true #开启的话，延时加载一个属性时会加载该对象全部属性，否则按需加载属性
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #打印sql语句,调试用 
+    
+jwt:
+  expire: 14400 #单位（秒）
+  pri-key:
+    path: jwt/pri.key
+  pub-key:
+    path: jwt/pub.key
+    
+client:
+  expire: 14400 #单位（秒）
+  id: springcloud-auth
+  token-header: client-token
+  secret: 123456
+  pri-key:
+    path: client/pri.key
+  pub-key:
+    path: client/pub.key

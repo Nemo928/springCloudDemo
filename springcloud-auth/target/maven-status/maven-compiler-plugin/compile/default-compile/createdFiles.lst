@@ -1,0 +1,4 @@
+com\zj\springcloud\auth\web\ClientController.class
+com\zj\springcloud\AuthApp.class
+com\zj\springcloud\auth\web\JWTController.class
+com\zj\springcloud\auth\config\WebConfig.class
