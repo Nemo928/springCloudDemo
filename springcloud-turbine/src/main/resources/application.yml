@@ -1,0 +1,15 @@
+server:
+  port: 8769
+  
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://ac:8760/eureka,http://ac2:8761/eureka,http://ac3:8762/eureka
+      
+spring:
+  application:
+    name: springcloud-trubine
+    
+turbine:
+  app-config: springcloud-rabbon,springcloud-feign #监控哪些服务
+  cluster-name-expression: "'default'"
